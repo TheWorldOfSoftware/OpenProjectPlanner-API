@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "The OpenProjectPlanner official Web API.",
   "keywords": [
-    "OpenSoftwareFoundation",
+    "OpenSoftwareCorp",
     "OSF",
     "open source",
     "global operations",
@@ -16,7 +16,7 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/OpenSoftwareFoundation/OpenProjectPlanner-API.git"
+    "url": "git+ssh://git@github.com/OpenSoftwareCorp/OpenProjectPlanner-API.git"
   },
   "files": [
     ""
