@@ -1,5 +1,5 @@
 {
-  "name": "openprojectplanner-api",
+  "name": "@opensoftware/openprojectplanner-api",
   "version": "1.0.0",
   "description": "The OpenProjectPlanner official Web API.",
   "keywords": [
@@ -19,6 +19,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/OpenSoftwareCorp/OpenProjectPlanner-API.git"
   },
+  "type": "module",
   "files": [
     ""
   ],
