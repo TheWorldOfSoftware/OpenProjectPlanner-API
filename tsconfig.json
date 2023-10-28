@@ -7,7 +7,7 @@
     "experimentalDecorators": true,
     "paths": {
       "models/*": [
-        "../../models/*"
+        "./src/models/*"
       ]
     }
   }
