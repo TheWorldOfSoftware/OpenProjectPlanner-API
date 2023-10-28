@@ -8,6 +8,11 @@
     "paths": {
       "models/*": [
         "./src/models/*"
+      ],
+      "types/*": [
+        "./types/*",
+        "../../types/*",
+        "../../../../types/*"
       ]
     }
   }
