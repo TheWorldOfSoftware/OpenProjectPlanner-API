@@ -20,11 +20,23 @@
     "url": "git+ssh://git@github.com/OpenSoftwareCorp/OpenProjectPlanner-API.git"
   },
   "type": "module",
+  "scripts": {
+    "start": "npm run build && node -r tsconfig-paths/register dist/main.js",
+    "build": "tsc"
+  },
   "files": [
     ""
   ],
   "engines": {
     "node": ">=18.17.0"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@nestjs/common": "^10.2.7",
+    "@nestjs/core": "^10.2.7",
+    "@nestjs/platform-fastify": "^10.2.7"
+  },
+  "devDependencies": {
+    "tsconfig-paths": "^4.2.0"
+  }
 }
