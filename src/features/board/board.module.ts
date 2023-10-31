@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import BoardController from "../controllers/board.js";
+import BoardController from "./board.controller.js";
 
 @Module({
   controllers: [BoardController]
