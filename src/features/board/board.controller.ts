@@ -1,5 +1,5 @@
 import { Controller, Get, NotImplementedException } from "@nestjs/common";
-import Board from "models/board.js";
+import Board from "../../models/board.js";
 
 @Controller("boards")
 export default class BoardController {
