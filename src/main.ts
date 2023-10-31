@@ -1,16 +1,10 @@
 import "dotenv";
 import { NestFactory } from "@nestjs/core";
-import {
-  FastifyAdapter,
-  type NestFastifyApplication
-} from "@nestjs/platform-fastify";
-import BoardModule from "./modules/board.module.js";
+import { FastifyAdapter } from "@nestjs/platform-fastify";
+import AppModule from "./app.js";
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(
-    BoardModule,
-    new FastifyAdapter()
-  );
+  const app = await NestFactory.create(AppModule, new FastifyAdapter());
   await app.listen(3000);
 }
 
