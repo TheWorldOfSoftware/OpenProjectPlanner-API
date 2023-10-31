@@ -2,8 +2,8 @@
   "extends": "../../../../tsconfig.json",
   "include": ["src/**/*"],
   "compilerOptions": {
-    "outDir": "dist",
     "noEmit": false,
+    "outDir": "dist",
     "experimentalDecorators": true,
     "paths": {
       "models/*": [
@@ -13,6 +13,9 @@
         "./types/*",
         "../../types/*",
         "../../../../types/*"
+      ],
+      "features/*": [
+        "./src/features/*"
       ]
     }
   }
