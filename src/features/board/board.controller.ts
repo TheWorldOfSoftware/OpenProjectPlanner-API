@@ -1,7 +1,7 @@
 import { Controller, Get, NotImplementedException } from "@nestjs/common";
 import Board from "../../models/board.js";
 
-@Controller("boards")
+@Controller()
 export default class BoardController {
   @Get()
   getAllBoards(): Board[] {
