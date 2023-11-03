@@ -21,7 +21,7 @@
   },
   "type": "module",
   "scripts": {
-    "start": "npm run build && node -r tsconfig-paths/register dist/main.js",
+    "start": "npm run build && node dist/main.js",
     "build": "tsc"
   },
   "files": [
@@ -38,7 +38,6 @@
     "mysql2": "^3.6.2"
   },
   "devDependencies": {
-    "@types/node": "^18.18.7",
-    "tsconfig-paths": "^4.2.0"
+    "@types/node": "^18.18.7"
   }
 }
