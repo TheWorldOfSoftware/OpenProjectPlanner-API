@@ -6,6 +6,7 @@ import { RouterModule } from "@nestjs/core";
 @Module({
   imports: [
     RootModule,
+    BoardModule,
     RouterModule.register([
       {
         path: "boards",
