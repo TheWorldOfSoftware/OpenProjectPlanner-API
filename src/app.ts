@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import BoardModule from "./features/board/board.module.js";
-import RootModule from "./features/root/root.module.js";
+import RootModule from "./routes/root/root.module.js";
+import BoardModule from "./routes/board/board.module.js";
 import { RouterModule } from "@nestjs/core";
 
 @Module({
