@@ -1,9 +1,22 @@
-import { Injectable, NotImplementedException } from "@nestjs/common";
-import type Board from "../../models/board.js";
+import { Inject, Injectable } from "@nestjs/common";
+import Board from "../../models/board.js";
+import type MySQL from "../databases/mysql/mysql.js";
+import type { BoardTable } from "../databases/mysql/tables/board.js";
 
 @Injectable()
 export default class BoardRepository {
+  public constructor(
+    @Inject("MySQL_OpenProjectPlanner") private readonly mySql: MySQL
+  ) {
+    if (!mySql.connected) mySql.connect();
+  }
+
   public async getBoards(): Promise<Board[]> {
-    throw new NotImplementedException("Get boards is not yet implemented!");
+    const query = `
+      SELECT * FROM Boards;
+    `;
+
+    const [rows] = await this.mySql.execute<BoardTable[]>(query);
+    return rows.map(row => new Board(row.Name, row.Id));
   }
 }
