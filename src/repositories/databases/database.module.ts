@@ -4,7 +4,10 @@ import MySQL from "./mysql/mysql.js";
 const mysqlProvider = {
   provide: "MySQL_OpenProjectPlanner",
   useValue: new MySQL(
-    process.env["MYSQL_CONNECTION"]!,
+    {
+      host: process.env["MYSQL_CONNECTION"]!,
+      schema: "openprojectplanner"
+    },
     {
       username: process.env["MYSQL_USER"]!,
       password: process.env["MYSQL_PASSWORD"]!

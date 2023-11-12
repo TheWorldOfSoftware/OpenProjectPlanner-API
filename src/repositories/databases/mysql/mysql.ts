@@ -25,14 +25,16 @@ export default class MySQL implements Database {
 
   /**
    * Instantiate a new MySQL representation.
-   * @param {string} host The host URL of the database
+   * @param {object} database Configurations for the database
+   * @param {string} database.host The host URL of the database
+   * @param {string=} database.schema Optional parameter to select the default schema
    * @param {object} credentials Connection credentials used to authenticate on the database
    * @param {string} credentials.username The username to authenticate with
    * @param {string} credentials.password The password of passphrase used for authentication
-   * @param {boolean} namedPlaceholders Optional config option to allow named placeholders in the provided queries. Format is :[name]. Default false
+   * @param {boolean=} namedPlaceholders Optional config option to allow named placeholders in the provided queries. Format is :[name]. Default false
    */
   public constructor(
-    host: string,
+    { host, schema }: { host: string; schema?: string },
     { username, password }: Credentials,
     namedPlaceholders: boolean = false
   ) {
@@ -40,7 +42,8 @@ export default class MySQL implements Database {
       host: host,
       user: username,
       password: password,
-      namedPlaceholders: namedPlaceholders
+      namedPlaceholders: namedPlaceholders,
+      ...(schema && { database: schema })
     };
   }
 

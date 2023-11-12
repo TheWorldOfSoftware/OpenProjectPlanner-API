@@ -13,7 +13,7 @@ export default class BoardRepository {
 
   public async getBoards(): Promise<Board[]> {
     const query = `
-      SELECT * FROM Boards;
+      SELECT * FROM Board;
     `;
 
     const [rows] = await this.mySql.execute<BoardTable[]>(query);
