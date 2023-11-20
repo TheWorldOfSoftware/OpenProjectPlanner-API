@@ -5,12 +5,12 @@ const mysqlProvider = {
   provide: "MySQL_OpenProjectPlanner",
   useValue: new MySQL(
     {
-      host: process.env["MYSQL_CONNECTION"]!,
+      host: process.env.MYSQL_CONNECTION,
       schema: "openprojectplanner"
     },
     {
-      username: process.env["MYSQL_USER"]!,
-      password: process.env["MYSQL_PASSWORD"]!
+      username: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD
     },
     true
   )
