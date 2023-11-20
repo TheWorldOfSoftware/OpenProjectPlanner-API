@@ -1,16 +1,16 @@
 import { Controller, Get, Inject } from "@nestjs/common";
-import BoardRepository from "../../repositories/board/board.repository.js";
 import Board from "../../models/board/board.js";
+import BoardFeature from "../../features/board/board.feature.js";
 
 @Controller()
 export default class BoardController {
   public constructor(
-    @Inject(BoardRepository) private readonly boardRepository: BoardRepository
+    @Inject(BoardFeature) private readonly boardFeature: BoardFeature
   ) {}
 
   @Get()
   async getAllBoards(): Promise<Board[]> {
-    return await this.boardRepository.getBoards();
+    return await this.boardFeature.getBoards();
   }
 
   @Get(":boardid")

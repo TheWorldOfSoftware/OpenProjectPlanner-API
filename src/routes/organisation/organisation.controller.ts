@@ -1,16 +1,16 @@
 import { Controller, Get, Inject } from "@nestjs/common";
 import type Organisation from "../../models/organisation/organisation.js";
-import OrganisationRepository from "../../repositories/organisation/organisation.repository.js";
+import OrganisationFeature from "../../features/organisation/organisation.feature.js";
 
 @Controller()
 export default class OrganisationController {
   public constructor(
-    @Inject(OrganisationRepository)
-    private readonly organisationRepository: OrganisationRepository
+    @Inject(OrganisationFeature)
+    private readonly organisationFeatuOrganisationFeature: OrganisationFeature
   ) {}
 
   @Get()
   async getAllOrganisations(): Promise<Organisation[]> {
-    return await this.organisationRepository.getOrganisations();
+    return await this.organisationFeatuOrganisationFeature.getOrganisations();
   }
 }
