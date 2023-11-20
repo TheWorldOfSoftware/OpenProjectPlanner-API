@@ -1,6 +1,6 @@
 import { Controller, Get, Inject } from "@nestjs/common";
 import BoardRepository from "../../repositories/board/board.repository.js";
-import Board from "../../models/board.js";
+import Board from "../../models/board/board.js";
 
 @Controller()
 export default class BoardController {

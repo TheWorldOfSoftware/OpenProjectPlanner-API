@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import Board from "../../models/board.js";
+import Board from "../../models/board/board.js";
 import type MySQL from "../databases/mysql/mysql.js";
 import type { BoardTable } from "../databases/mysql/tables/board.js";
 
