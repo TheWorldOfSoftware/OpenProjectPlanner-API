@@ -1,11 +1,10 @@
 {
-  "name": "@opensoftware/openprojectplanner-api",
+  "name": "@worldofsoftware/openprojectplanner-api",
   "version": "1.0.0",
   "description": "The OpenProjectPlanner official Web API.",
   "keywords": [
-    "OpenSoftware",
-    "OpenSoftwareCorp",
-    "OSC",
+    "WorldOfSoftware",
+    "WOS",
     "open source",
     "global operations",
     "OpenProjectPlanner",
@@ -17,7 +16,7 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/OpenSoftwareCorp/OpenProjectPlanner-API.git"
+    "url": "git+ssh://git@github.com/TheWorldOfSoftware/OpenProjectPlanner-API.git"
   },
   "type": "module",
   "scripts": {
