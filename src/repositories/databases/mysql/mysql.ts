@@ -6,7 +6,6 @@ import mysql, {
   type ResultSetHeader,
   type RowDataPacket
 } from "mysql2/promise";
-import type { Credentials } from "types/credentials.js";
 import type Database from "../idatabase.js";
 
 /**
@@ -35,7 +34,7 @@ export default class MySQL implements Database {
    */
   public constructor(
     { host, schema }: { host: string; schema?: string },
-    { username, password }: Credentials,
+    { username, password }: { username: string, password: string },
     namedPlaceholders: boolean = false
   ) {
     this.config = {
