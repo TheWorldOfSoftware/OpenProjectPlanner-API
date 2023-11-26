@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
-import { mySQLOpenProjectPlanner } from "./open-project-planner.js";
+import OpenProjectPlannerModule from "./open-project-planner/open-project-planner.module.js";
 
 @Module({
-  providers: [mySQLOpenProjectPlanner],
-  exports: [mySQLOpenProjectPlanner]
+  imports: [OpenProjectPlannerModule],
+  exports: [OpenProjectPlannerModule]
 })
 export class SourcesModule {}
