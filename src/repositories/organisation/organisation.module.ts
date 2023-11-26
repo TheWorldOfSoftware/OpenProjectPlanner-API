@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
 import OrganisationRepository from "./organisation.repository.js";
-import { DatabaseModule } from "../sources/databases/database.module.js";
+import { SourcesModule } from "../sources/sources.module.js";
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [SourcesModule],
   providers: [OrganisationRepository],
   exports: [OrganisationRepository]
 })
