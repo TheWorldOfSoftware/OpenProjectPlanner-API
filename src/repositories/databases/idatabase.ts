@@ -1,10 +1,9 @@
 /**
  * Represents a physical database
  */
-export default interface Database {
+export default interface IDatabase {
   /**
    * Connect to the database.
-   * Assumes connection configuration has already been provided.
    */
   connect(): void | Promise<void>;
   /**

@@ -3,8 +3,8 @@ import OrganisationRepository from "./organisation.repository.js";
 import { DatabaseModule } from "../databases/database.module.js";
 
 @Module({
-  providers: [OrganisationRepository],
   imports: [DatabaseModule],
+  providers: [OrganisationRepository],
   exports: [OrganisationRepository]
 })
 export default class OrganisationRepositoryModule {}

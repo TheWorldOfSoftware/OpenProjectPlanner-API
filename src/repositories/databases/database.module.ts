@@ -1,23 +1,21 @@
 import { Module } from "@nestjs/common";
 import MySQL from "./mysql/mysql.js";
 
-const mysqlProvider = {
+const mySQLOpenProjectPlanner = {
   provide: "MySQL_OpenProjectPlanner",
   useValue: new MySQL(
-    {
-      host: process.env.MYSQL_CONNECTION,
-      schema: "openprojectplanner"
-    },
+    process.env.MYSQL_CONNECTION,
     {
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD
     },
+    "openprojectplanner",
     true
   )
 };
 
 @Module({
-  providers: [mysqlProvider],
-  exports: [mysqlProvider]
+  providers: [mySQLOpenProjectPlanner],
+  exports: [mySQLOpenProjectPlanner]
 })
 export class DatabaseModule {}
