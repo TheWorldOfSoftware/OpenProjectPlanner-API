@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import type MySQL from "../databases/mysql/mysql.js";
+import type MySQL from "../sources/databases/mysql/mysql.js";
 
 @Injectable()
 export default class OrganisationRepository {
