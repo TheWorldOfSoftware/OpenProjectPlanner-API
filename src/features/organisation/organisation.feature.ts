@@ -9,4 +9,8 @@ export default class OrganisationFeature {
   public async getOrganisations(): Promise<Organisation[]> {
     return await this.organisationRepository.getOrganisations();
   }
+
+  public async newOrganisation(organisation: Organisation): Promise<void> {
+    return await this.organisationRepository.insertOrganisation(organisation);
+  }
 }
