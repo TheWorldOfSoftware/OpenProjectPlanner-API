@@ -1,6 +1,6 @@
 import type { UUID } from "crypto";
 
-export default class Organisation {
+export default class Team {
   private _name: string;
 
   public get name(): string {
@@ -21,7 +21,12 @@ export default class Organisation {
     this._description = value;
   }
 
-  public constructor(name: string, description: string, public readonly id?: UUID) {
+  public constructor(
+    public readonly organisationId: UUID,
+    name: string,
+    description: string,
+    public readonly id?: UUID
+  ) {
     this._name = name;
     this._description = description;
   }

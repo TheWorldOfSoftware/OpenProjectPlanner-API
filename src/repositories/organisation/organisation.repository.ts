@@ -6,12 +6,16 @@ import { escape } from "mysql2/promise";
 
 @Injectable()
 export default class OrganisationRepository {
-  public constructor(@Inject("MySQL_OpenProjectPlanner") private readonly mySQL: MySQL) {}
+  public constructor(
+    @Inject("MySQL_OpenProjectPlanner") private readonly mySQL: MySQL
+  ) {}
 
   public async insertOrganisation(organisation: Organisation): Promise<void> {
     const query = `
       INSERT INTO Organisation (Name, Description)
-      VALUES (${escape(organisation.name)}, ${escape(organisation.description)});
+      VALUES (${escape(organisation.name)}, ${escape(
+        organisation.description
+      )});
     `;
     await this.mySQL.execute(query);
   }
@@ -19,7 +23,7 @@ export default class OrganisationRepository {
   public async getOrganisations(): Promise<Organisation[]> {
     const query = `SELECT BIN_TO_UUID(Id) AS Id, Name, Description FROM Organisation WHERE Deleted IS FALSE;`;
     const [rows] = await this.mySQL.execute<OrganisationTable[]>(query);
-    return rows.map(row => new Organisation(row.Name, row.Description, row.Id))
+    return rows.map(row => new Organisation(row.Name, row.Description, row.Id));
   }
 
   public async updateOrganisation(organisation: Organisation): Promise<void> {

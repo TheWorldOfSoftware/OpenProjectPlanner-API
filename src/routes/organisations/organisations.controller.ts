@@ -5,7 +5,10 @@ import { OrganisationPipe } from "./pipes/organisation.pipe.js";
 
 @Controller()
 export default class OrganisationsController {
-  public constructor(@Inject(OrganisationFeature) private readonly organisationFeature: OrganisationFeature) {}
+  public constructor(
+    @Inject(OrganisationFeature)
+    private readonly organisationFeature: OrganisationFeature
+  ) {}
 
   @Get()
   public async getOrganisations(): Promise<Organisation[]> {
@@ -13,12 +16,16 @@ export default class OrganisationsController {
   }
 
   @Post()
-  public async createOrganisation(@Body(new OrganisationPipe(true)) body: Organisation): Promise<void> {
+  public async createOrganisation(
+    @Body(new OrganisationPipe(true)) body: Organisation
+  ): Promise<void> {
     await this.organisationFeature.newOrganisation(body);
   }
 
   @Put()
-  public async updateOrganisation(@Body(new OrganisationPipe(false)) body: Organisation): Promise<void> {
+  public async updateOrganisation(
+    @Body(new OrganisationPipe(false)) body: Organisation
+  ): Promise<void> {
     await this.organisationFeature.updateOrganisation(body);
   }
 }
