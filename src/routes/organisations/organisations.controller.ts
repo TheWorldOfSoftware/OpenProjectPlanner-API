@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Inject, Post } from "@nestjs/common";
+import { Body, Controller, Get, Inject, Post, Put } from "@nestjs/common";
 import OrganisationFeature from "../../features/organisation/organisation.feature.js";
 import type Organisation from "../../models/organisation/organisation.js";
 import { OrganisationPipe } from "./pipes/organisation.pipe.js";
@@ -15,5 +15,10 @@ export default class OrganisationsController {
   @Post()
   public async createOrganisation(@Body(new OrganisationPipe(true)) body: Organisation): Promise<void> {
     await this.organisationFeature.newOrganisation(body);
+  }
+
+  @Put()
+  public async updateOrganisation(@Body(new OrganisationPipe(false)) body: Organisation): Promise<void> {
+    await this.organisationFeature.updateOrganisation(body);
   }
 }

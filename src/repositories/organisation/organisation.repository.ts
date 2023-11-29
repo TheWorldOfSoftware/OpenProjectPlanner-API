@@ -21,4 +21,15 @@ export default class OrganisationRepository {
     const [rows] = await this.mySQL.execute<OrganisationTable[]>(query);
     return rows.map(row => new Organisation(row.Name, row.Description, row.Id))
   }
+
+  public async updateOrganisation(organisation: Organisation): Promise<void> {
+    const query = `
+      UPDATE Organisation
+      SET Name = ${escape(organisation.name)},
+        Description = ${escape(organisation.description)}
+      WHERE Id = ${escape(organisation.id)};
+    `;
+
+    await this.mySQL.execute(query);
+  }
 }
