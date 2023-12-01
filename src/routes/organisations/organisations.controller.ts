@@ -1,7 +1,19 @@
-import { Body, Controller, Get, Inject, Post, Put } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Inject,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Put
+} from "@nestjs/common";
 import OrganisationFeature from "../../features/organisation/organisation.feature.js";
 import type Organisation from "../../models/organisation/organisation.js";
 import { OrganisationPipe } from "../pipes/organisation.pipe.js";
+import type { UUID } from "crypto";
+import { BodyParam } from "../decorators/body-param.decorator.js";
 
 @Controller()
 export default class OrganisationsController {
@@ -10,21 +22,28 @@ export default class OrganisationsController {
     private readonly organisationFeature: OrganisationFeature
   ) {}
 
+  @Delete(":id")
+  public async deleteOrganisation(
+    @Param("id", new ParseUUIDPipe()) organisationId: UUID
+  ): Promise<void> {
+    await this.organisationFeature.removeOrganisation(organisationId);
+  }
+
   @Get()
   public async getOrganisations(): Promise<Organisation[]> {
     return await this.organisationFeature.getOrganisations();
   }
 
   @Post()
-  public async createOrganisation(
-    @Body(new OrganisationPipe(true)) body: Organisation
+  public async postOrganisation(
+    @Body(new OrganisationPipe()) body: Organisation
   ): Promise<void> {
     await this.organisationFeature.newOrganisation(body);
   }
 
-  @Put()
-  public async updateOrganisation(
-    @Body(new OrganisationPipe(false)) body: Organisation
+  @Put(":id")
+  public async putOrganisation(
+    @BodyParam("id", new OrganisationPipe()) body: Organisation
   ): Promise<void> {
     await this.organisationFeature.updateOrganisation(body);
   }
