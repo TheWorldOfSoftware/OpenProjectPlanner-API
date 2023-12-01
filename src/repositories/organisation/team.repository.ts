@@ -30,7 +30,7 @@ export default class TeamRepository {
     `;
     const [rows] = await this.mySQL.execute<TeamTable[]>(query);
     return rows.map(
-      row => new Team(row.OrganisationId, row.Name, row.Description, row.Id)
+      row => new Team(organisationId, row.Name, row.Description, row.Id)
     );
   }
 }

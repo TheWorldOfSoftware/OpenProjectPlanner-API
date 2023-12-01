@@ -14,6 +14,6 @@ export default class TeamFeature {
   }
 
   public async newTeam(team: Team): Promise<void> {
-    return await this.teamRepository.insertTeam(team);
+    await this.teamRepository.insertTeam(team);
   }
 }
