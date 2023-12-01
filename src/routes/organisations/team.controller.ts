@@ -20,14 +20,14 @@ export default class TeamController {
 
   @Get()
   public async getTeams(
-    @Param("organisationid", new ParseUUIDPipe()) organisationId: UUID
+    @Param("organisationId", new ParseUUIDPipe()) organisationId: UUID
   ): Promise<Team[]> {
     return await this.teamFeature.getTeams(organisationId);
   }
 
   @Post()
   public async createTeam(
-    @BodyParam("organisationid", new TeamPipe(true)) team: Team
+    @BodyParam("organisationId", new TeamPipe(true)) team: Team
   ): Promise<void> {
     await this.teamFeature.newTeam(team);
   }

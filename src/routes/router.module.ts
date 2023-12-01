@@ -16,11 +16,11 @@ import BoardsModule from "./boards/board.module.js";
 
         children: [
           {
-            path: ":organisationid/teams",
+            path: ":organisationId/teams",
             module: TeamsModule
           },
           {
-            path: ":organisationid/boards",
+            path: ":organisationId/boards",
             module: BoardsModule
           }
         ]
