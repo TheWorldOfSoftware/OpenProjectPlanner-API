@@ -21,7 +21,11 @@ export default class Organisation {
     this._description = value;
   }
 
-  public constructor(name: string, description: string, public readonly id?: UUID) {
+  public constructor(
+    name: string,
+    description: string,
+    public readonly id?: UUID
+  ) {
     this._name = name;
     this._description = description;
   }

@@ -1,4 +1,12 @@
-import { createPool, type FieldPacket, type Pool, type PoolOptions, type ProcedureCallPacket, type ResultSetHeader, type RowDataPacket } from "mysql2/promise";
+import {
+  createPool,
+  type FieldPacket,
+  type Pool,
+  type PoolOptions,
+  type ProcedureCallPacket,
+  type ResultSetHeader,
+  type RowDataPacket
+} from "mysql2/promise";
 import type IDatabase from "../idatabase.js";
 
 /**
@@ -20,7 +28,12 @@ export default class MySQL implements IDatabase {
    * @param {string=} defaultSchema Optional parameter to select the default schema
    * @param {boolean=} namedPlaceholders Optional config option to allow named placeholders in provided queries. Format is :[name]
    */
-  public constructor(host: string, { username, password }: { username: string, password: string }, defaultSchema?: string, namedPlaceholders: boolean = false) {
+  public constructor(
+    host: string,
+    { username, password }: { username: string; password: string },
+    defaultSchema?: string,
+    namedPlaceholders: boolean = false
+  ) {
     this.poolConfig = {
       host: host,
       user: username,
@@ -40,8 +53,14 @@ export default class MySQL implements IDatabase {
     await this.pool.end();
   }
 
-  public async execute<T extends ResultSetHeader | ResultSetHeader[] | RowDataPacket[] | RowDataPacket[][] | ProcedureCallPacket>(query: string, params?: any[] | undefined): Promise<[T, FieldPacket[]]> {
+  public async execute<
+    T extends
+      | ResultSetHeader
+      | ResultSetHeader[]
+      | RowDataPacket[]
+      | RowDataPacket[][]
+      | ProcedureCallPacket
+  >(query: string, params?: any[] | undefined): Promise<[T, FieldPacket[]]> {
     return await this.pool.execute(query, params);
   }
-
 }
