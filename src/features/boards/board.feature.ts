@@ -9,11 +9,19 @@ export default class BoardFeature {
     @Inject(BoardRepository) private readonly boardRepository: BoardRepository
   ) {}
 
+  public async removeBoard(boardId: UUID): Promise<void> {
+    await this.boardRepository.softDeleteBoard(boardId);
+  }
+
   public async getBoards(organisationId: UUID): Promise<Board[]> {
     return await this.boardRepository.getBoards(organisationId);
   }
 
   public async newBoard(board: Board): Promise<void> {
     await this.boardRepository.insertBoard(board);
+  }
+
+  public async updateBoard(board: Board): Promise<void> {
+    await this.boardRepository.updateBoard(board);
   }
 }

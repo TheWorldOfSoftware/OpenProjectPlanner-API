@@ -11,6 +11,15 @@ export default class BoardRepository {
     @Inject("MySQL_OpenProjectPlanner") private readonly mySQL: MySQL
   ) {}
 
+  public async softDeleteBoard(boardId: UUID): Promise<void> {
+    const query = `
+      UPDATE Board
+      SET Deleted = TRUE
+      WHERE Id = UUID_TO_BIN(${escape(boardId)});
+    `;
+    await this.mySQL.execute(query);
+  }
+
   public async insertBoard(board: Board): Promise<void> {
     const query = `
       INSERT INTO Board (OrganisationId, Title, Description)
@@ -33,5 +42,15 @@ export default class BoardRepository {
     return rows.map(
       row => new Board(organisationId, row.Title, row.Description, row.Id)
     );
+  }
+
+  public async updateBoard(board: Board): Promise<void> {
+    const query = `
+      UPDATE board
+      SET Title = ${escape(board.title)},
+        Description = ${escape(board.description)}
+      WHERE Id = UUID_TO_BIN(${escape(board.id)});
+    `;
+    await this.mySQL.execute(query);
   }
 }

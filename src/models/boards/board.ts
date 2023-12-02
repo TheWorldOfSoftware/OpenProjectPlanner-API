@@ -34,6 +34,7 @@ export default class Board {
   public toJSON(): object {
     return {
       ...(this.id && { id: this.id }),
+      organisationId: this.organisationId,
       title: this.title,
       description: this.description
     };

@@ -5,24 +5,19 @@ import { Injectable, type PipeTransform } from "@nestjs/common";
 import Board from "../../models/boards/board.js";
 
 const boardBody = z.strictObject({
-  id: z.string().refine((id): id is UUID => validateUUID(id)),
+  id: z
+    .string()
+    .refine((id): id is UUID => validateUUID(id))
+    .optional(),
   organisationId: z.string().refine((id): id is UUID => validateUUID(id)),
   title: z.string(),
   description: z.string()
 });
 
-const boardBodyNew = boardBody.omit({ id: true });
-
 @Injectable()
 export class BoardPipe implements PipeTransform {
-  public constructor(private readonly isNew = false) {}
-
   public transform(value: any) {
-    if (this.isNew) {
-      const { organisationId, title, description } = boardBodyNew.parse(value);
-      return new Board(organisationId, title, description);
-    }
-
+    console.log("Value: ", value);
     const { id, organisationId, title, description } = boardBody.parse(value);
     return new Board(organisationId, title, description, id);
   }
