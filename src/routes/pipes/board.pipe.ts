@@ -17,7 +17,6 @@ const boardBody = z.strictObject({
 @Injectable()
 export class BoardPipe implements PipeTransform {
   public transform(value: any) {
-    console.log("Value: ", value);
     const { id, organisationId, title, description } = boardBody.parse(value);
     return new Board(organisationId, title, description, id);
   }
