@@ -12,10 +12,10 @@ import BoardFeature from "../../features/boards/board.feature.js";
 import type { UUID } from "crypto";
 import type Board from "../../models/boards/board.js";
 import { BodyParams } from "../decorators/body-param.decorator.js";
-import { BoardPipe } from "../pipes/board.pipe.js";
+import { BoardPipe } from "../pipes/boards/board.pipe.js";
 
 @Controller()
-export default class BoardController {
+export default class BoardsController {
   public constructor(
     @Inject(BoardFeature) private readonly boardFeature: BoardFeature
   ) {}

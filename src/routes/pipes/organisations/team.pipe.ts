@@ -2,7 +2,7 @@ import { Injectable, type PipeTransform } from "@nestjs/common";
 import type { UUID } from "crypto";
 import { validate as validateUUID } from "uuid";
 import { z } from "zod";
-import Team from "../../models/organisation/team.js";
+import Team from "../../../models/organisation/team.js";
 
 const teamBody = z.strictObject({
   id: z.string().refine((id): id is UUID => validateUUID(id)),

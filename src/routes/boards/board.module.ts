@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
 import BoardFeatureModule from "../../features/boards/board.module.js";
-import BoardController from "./board.controller.js";
+import BoardsController from "./boards.controller.js";
 
 @Module({
   imports: [BoardFeatureModule],
-  controllers: [BoardController]
+  controllers: [BoardsController]
 })
 export default class BoardsModule {}

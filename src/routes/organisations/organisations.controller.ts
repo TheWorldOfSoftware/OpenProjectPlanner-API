@@ -11,7 +11,7 @@ import {
 } from "@nestjs/common";
 import OrganisationFeature from "../../features/organisation/organisation.feature.js";
 import type Organisation from "../../models/organisation/organisation.js";
-import { OrganisationPipe } from "../pipes/organisation.pipe.js";
+import { OrganisationPipe } from "../pipes/organisations/organisation.pipe.js";
 import type { UUID } from "crypto";
 import { BodyParam } from "../decorators/body-param.decorator.js";
 

@@ -1,8 +1,8 @@
-import type { UUID } from "crypto";
-import { z } from "zod";
-import { validate as validateUUID } from "uuid";
 import { Injectable, type PipeTransform } from "@nestjs/common";
-import Board from "../../models/boards/board.js";
+import Board from "../../../models/boards/board.js";
+import type { UUID } from "crypto";
+import { validate as validateUUID } from "uuid";
+import { z } from "zod";
 
 const boardBody = z.strictObject({
   id: z

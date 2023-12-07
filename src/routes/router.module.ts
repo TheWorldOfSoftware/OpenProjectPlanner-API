@@ -3,10 +3,12 @@ import { RouterModule as NestRouterModule } from "@nestjs/core";
 import OrganisationsModule from "./organisations/organisations.module.js";
 import TeamsModule from "./organisations/team.module.js";
 import BoardsModule from "./boards/board.module.js";
+import BoardTeamsModule from "./boards/teams.module.js";
 
 @Module({
   imports: [
     BoardsModule,
+    BoardTeamsModule,
     OrganisationsModule,
     TeamsModule,
     NestRouterModule.register([
@@ -21,7 +23,14 @@ import BoardsModule from "./boards/board.module.js";
           },
           {
             path: ":organisationId/boards",
-            module: BoardsModule
+            module: BoardsModule,
+
+            children: [
+              {
+                path: ":boardId/teams",
+                module: BoardTeamsModule
+              }
+            ]
           }
         ]
       }
