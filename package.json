@@ -23,7 +23,9 @@
   "type": "module",
   "scripts": {
     "start": "npm run build && node dist/main.js",
-    "build": "tsc"
+    "build": "tsc",
+    "format": "prettier . --write",
+    "lint": "eslint . --fix"
   },
   "files": [
     ""
