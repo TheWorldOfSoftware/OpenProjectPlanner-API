@@ -1,17 +1,12 @@
 {
   "extends": "../../../../configurations/configs/typescript/tsconfig.json",
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "compilerOptions": {
     "noEmit": false,
     "outDir": "dist",
     "experimentalDecorators": true,
     "paths": {
-      "types/*": [
-        "./src/types/*",
-        "../../types/*",
-      ]
+      "types/*": ["./src/types/*", "../../types/*"]
     }
   }
 }
