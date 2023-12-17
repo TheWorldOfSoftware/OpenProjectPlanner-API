@@ -1,18 +1,18 @@
 import {
-  createPool,
   type FieldPacket,
   type Pool,
   type PoolOptions,
   type ProcedureCallPacket,
   type ResultSetHeader,
-  type RowDataPacket
+  type RowDataPacket,
+  createPool
 } from "mysql2/promise";
-import type IDatabase from "../idatabase.js";
+import type { IDatabase } from "../idatabase.js";
 
 /**
  * Interact with a MySQL database
  */
-export default class MySQL implements IDatabase {
+export class MySQL implements IDatabase {
   /** Manage a pool of connections */
   private pool: Pool;
 
@@ -32,13 +32,13 @@ export default class MySQL implements IDatabase {
     host: string,
     { username, password }: { username: string; password: string },
     defaultSchema?: string,
-    namedPlaceholders: boolean = false
+    namedPlaceholders = false
   ) {
     this.poolConfig = {
-      host: host,
+      host,
       user: username,
-      password: password,
-      namedPlaceholders: namedPlaceholders,
+      password,
+      namedPlaceholders,
       ...(defaultSchema && { database: defaultSchema })
     };
 
@@ -55,12 +55,12 @@ export default class MySQL implements IDatabase {
 
   public async execute<
     T extends
+      | ProcedureCallPacket
       | ResultSetHeader
       | ResultSetHeader[]
       | RowDataPacket[]
       | RowDataPacket[][]
-      | ProcedureCallPacket
   >(query: string, params?: any[] | undefined): Promise<[T, FieldPacket[]]> {
-    return await this.pool.execute(query, params);
+    return this.pool.execute(query, params);
   }
 }

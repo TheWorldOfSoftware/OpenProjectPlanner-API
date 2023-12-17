@@ -1,10 +1,10 @@
 import { Inject, Injectable } from "@nestjs/common";
-import OrganisationRepository from "../../repositories/organisation/organisation.repository.js";
-import type Organisation from "../../models/organisation/organisation.js";
+import type { Organisation } from "../../models/organisation/organisation.js";
+import { OrganisationRepository } from "../../repositories/organisation/organisation.repository.js";
 import type { UUID } from "crypto";
 
 @Injectable()
-export default class OrganisationFeature {
+export class OrganisationFeature {
   public constructor(
     @Inject(OrganisationRepository)
     private readonly organisationRepository: OrganisationRepository
@@ -15,7 +15,7 @@ export default class OrganisationFeature {
   }
 
   public async getOrganisations(): Promise<Organisation[]> {
-    return await this.organisationRepository.getOrganisations();
+    return this.organisationRepository.getOrganisations();
   }
 
   public async newOrganisation(organisation: Organisation): Promise<void> {

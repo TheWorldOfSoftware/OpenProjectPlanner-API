@@ -1,17 +1,19 @@
 import { Inject, Injectable } from "@nestjs/common";
-import type MySQL from "../sources/databases/mysql/mysql.js";
-import Team from "../../models/organisation/team.js";
+import type { MySQL } from "../sources/databases/mysql/mysql.js";
+import { Team } from "../../models/organisation/team.js";
 import type { TeamTable } from "../sources/open-project-planner/tables/team.js";
 import type { UUID } from "crypto";
 import { escape } from "mysql2/promise";
 
 @Injectable()
-export default class TeamRepository {
-  public constructor(
-    @Inject("MySQL_OpenProjectPlanner") private readonly mySQL: MySQL
-  ) {}
+export class TeamRepository {
+  private readonly mySQL: MySQL;
 
-  public async insertTeam(team: Team): Promise<void> {
+  public constructor(@Inject("MySQL_OpenProjectPlanner") mySQL: MySQL) {
+    this.mySQL = mySQL;
+  }
+
+  public async insertTeam(team: readonly Team): Promise<void> {
     const query = `
       INSERT INTO Team (OrganisationId, Name, Description)
       VALUES (UUID_TO_BIN(${escape(team.organisationId)}), ${escape(

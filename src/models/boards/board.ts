@@ -1,6 +1,6 @@
 import type { UUID } from "crypto";
 
-export default class Board {
+export class Board {
   private _title: string;
 
   public get title(): string {

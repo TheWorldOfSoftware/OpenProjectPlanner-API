@@ -9,14 +9,14 @@ import {
   Post,
   Put
 } from "@nestjs/common";
-import OrganisationFeature from "../../features/organisation/organisation.feature.js";
-import type Organisation from "../../models/organisation/organisation.js";
+import { BodyParam } from "../decorators/body-param.decorator.js";
+import type { Organisation } from "../../models/organisation/organisation.js";
+import { OrganisationFeature } from "../../features/organisation/organisation.feature.js";
 import { OrganisationPipe } from "../pipes/organisations/organisation.pipe.js";
 import type { UUID } from "crypto";
-import { BodyParam } from "../decorators/body-param.decorator.js";
 
 @Controller()
-export default class OrganisationsController {
+export class OrganisationsController {
   public constructor(
     @Inject(OrganisationFeature)
     private readonly organisationFeature: OrganisationFeature
@@ -31,7 +31,7 @@ export default class OrganisationsController {
 
   @Get()
   public async getOrganisations(): Promise<Organisation[]> {
-    return await this.organisationFeature.getOrganisations();
+    return this.organisationFeature.getOrganisations();
   }
 
   @Post()

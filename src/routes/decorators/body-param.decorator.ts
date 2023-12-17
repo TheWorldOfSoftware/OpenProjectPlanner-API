@@ -1,13 +1,13 @@
 import {
-  createParamDecorator,
   type ExecutionContext,
   type PipeTransform,
-  type Type
+  type Type,
+  createParamDecorator
 } from "@nestjs/common";
 
 export const BodyParam: (
   param: string,
-  ...pipes: (PipeTransform<any, any> | Type<PipeTransform<any, any>>)[]
+  ...pipes: (PipeTransform | Type<PipeTransform>)[]
 ) => ParameterDecorator = createParamDecorator<string>(
   (data, ctx: ExecutionContext) => {
     const req = ctx.switchToHttp().getRequest();
@@ -19,7 +19,7 @@ export const BodyParam: (
 );
 
 export const BodyParams: (
-  ...pipes: (PipeTransform<any, any> | Type<PipeTransform<any, any>>)[]
+  ...pipes: (PipeTransform | Type<PipeTransform>)[]
 ) => ParameterDecorator = createParamDecorator(
   (_data, ctx: ExecutionContext) => {
     const req = ctx.switchToHttp().getRequest();

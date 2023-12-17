@@ -6,23 +6,25 @@ import {
   ParseUUIDPipe,
   Post
 } from "@nestjs/common";
-import TeamFeature from "../../features/organisation/team.feature.js";
-import type Team from "../../models/organisation/team.js";
-import type { UUID } from "crypto";
-import { TeamPipe } from "../pipes/organisations/team.pipe.js";
 import { BodyParam } from "../decorators/body-param.decorator.js";
+import type { Team } from "../../models/organisation/team.js";
+import { TeamFeature } from "../../features/organisation/team.feature.js";
+import { TeamPipe } from "../pipes/organisations/team.pipe.js";
+import type { UUID } from "crypto";
 
 @Controller()
-export default class TeamController {
-  public constructor(
-    @Inject(TeamFeature) private readonly teamFeature: TeamFeature
-  ) {}
+export class TeamController {
+  private readonly teamFeature: TeamFeature;
+
+  public constructor(@Inject(TeamFeature) teamFeature: TeamFeature) {
+    this.teamFeature = teamFeature;
+  }
 
   @Get()
   public async getTeams(
     @Param("organisationId", new ParseUUIDPipe()) organisationId: UUID
   ): Promise<Team[]> {
-    return await this.teamFeature.getTeams(organisationId);
+    return this.teamFeature.getTeams(organisationId);
   }
 
   @Post()

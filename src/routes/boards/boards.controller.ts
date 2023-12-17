@@ -8,14 +8,14 @@ import {
   Post,
   Put
 } from "@nestjs/common";
-import BoardFeature from "../../features/boards/board.feature.js";
-import type { UUID } from "crypto";
-import type Board from "../../models/boards/board.js";
-import { BodyParams } from "../decorators/body-param.decorator.js";
+import type { Board } from "../../models/boards/board.js";
+import { BoardFeature } from "../../features/boards/board.feature.js";
 import { BoardPipe } from "../pipes/boards/board.pipe.js";
+import { BodyParams } from "../decorators/body-param.decorator.js";
+import type { UUID } from "crypto";
 
 @Controller()
-export default class BoardsController {
+export class BoardsController {
   public constructor(
     @Inject(BoardFeature) private readonly boardFeature: BoardFeature
   ) {}
@@ -31,7 +31,7 @@ export default class BoardsController {
   public async getBoards(
     @Param("organisationId", new ParseUUIDPipe()) organisationId: UUID
   ): Promise<Board[]> {
-    return await this.boardFeature.getBoards(organisationId);
+    return this.boardFeature.getBoards(organisationId);
   }
 
   @Post()

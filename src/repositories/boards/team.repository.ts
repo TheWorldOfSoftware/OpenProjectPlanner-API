@@ -1,10 +1,10 @@
 import { Inject, Injectable } from "@nestjs/common";
-import type MySQL from "../sources/databases/mysql/mysql.js";
+import type { MySQL } from "../sources/databases/mysql/mysql.js";
 import type { UUID } from "crypto";
 import { escape } from "mysql2";
 
 @Injectable()
-export default class BoardTeamRepository {
+export class BoardTeamRepository {
   public constructor(
     @Inject("MySQL_OpenProjectPlanner") private readonly mySQL: MySQL
   ) {}

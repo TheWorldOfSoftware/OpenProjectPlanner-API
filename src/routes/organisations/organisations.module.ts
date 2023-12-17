@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
-import OrganisationsController from "./organisations.controller.js";
-import OrganisationFeatureModule from "../../features/organisation/organisation.module.js";
+import { OrganisationsController } from "./organisations.controller.js";
+import { OrganisationFeatureModule } from "../../features/organisation/organisation.module.js";
 
 @Module({
   imports: [OrganisationFeatureModule],
   controllers: [OrganisationsController]
 })
-export default class OrganisationsModule {}
+export class OrganisationsModule {}

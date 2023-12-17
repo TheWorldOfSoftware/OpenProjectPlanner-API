@@ -1,16 +1,18 @@
 import { Inject, Injectable } from "@nestjs/common";
-import TeamRepository from "../../repositories/organisation/team.repository.js";
-import type Team from "../../models/organisation/team.js";
+import type { Team } from "../../models/organisation/team.js";
+import { TeamRepository } from "../../repositories/organisation/team.repository.js";
 import type { UUID } from "crypto";
 
 @Injectable()
-export default class TeamFeature {
-  public constructor(
-    @Inject(TeamRepository) private readonly teamRepository: TeamRepository
-  ) {}
+export class TeamFeature {
+  private readonly teamRepository: TeamRepository;
+
+  public constructor(@Inject(TeamRepository) teamRepository: TeamRepository) {
+    this.teamRepository = teamRepository;
+  }
 
   public async getTeams(organisationId: UUID): Promise<Team[]> {
-    return await this.teamRepository.getTeams(organisationId);
+    return this.teamRepository.getTeams(organisationId);
   }
 
   public async newTeam(team: Team): Promise<void> {
