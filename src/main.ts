@@ -1,5 +1,5 @@
 import "dotenv/config";
-import "./config/env.js";
+import "./lib/env.js";
 import { NestFactory } from "@nestjs/core";
 import { FastifyAdapter } from "@nestjs/platform-fastify";
 import AppModule from "./app.js";
