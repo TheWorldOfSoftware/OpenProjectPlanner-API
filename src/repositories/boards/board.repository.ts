@@ -7,9 +7,13 @@ import { escape } from "mysql2/promise";
 
 @Injectable()
 export class BoardRepository {
+  private readonly mySQL: Readonly<MySQL>;
+
   public constructor(
-    @Inject("MySQL_OpenProjectPlanner") private readonly mySQL: MySQL
-  ) {}
+    @Inject("MySQL_OpenProjectPlanner") mySQL: Readonly<MySQL>
+  ) {
+    this.mySQL = mySQL;
+  }
 
   public async softDeleteBoard(boardId: UUID): Promise<void> {
     const query = `
@@ -20,7 +24,7 @@ export class BoardRepository {
     await this.mySQL.execute(query);
   }
 
-  public async insertBoard(board: Board): Promise<void> {
+  public async insertBoard(board: Readonly<Board>): Promise<void> {
     const query = `
       INSERT INTO Board (OrganisationId, Title, Description)
       VALUES (UUID_TO_BIN(${escape(board.organisationId)}), ${escape(
@@ -40,11 +44,16 @@ export class BoardRepository {
 
     const [rows] = await this.mySQL.execute<BoardTable[]>(query);
     return rows.map(
-      row => new Board(organisationId, row.Title, row.Description, row.Id)
+      row =>
+        new Board(
+          organisationId,
+          { title: row.Title, description: row.Description },
+          row.Id
+        )
     );
   }
 
-  public async updateBoard(board: Board): Promise<void> {
+  public async updateBoard(board: Readonly<Board>): Promise<void> {
     const query = `
       UPDATE board
       SET Title = ${escape(board.title)},

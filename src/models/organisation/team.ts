@@ -1,41 +1,51 @@
 import type { UUID } from "crypto";
 
 export class Team {
-  private _name: string;
+  #name: string;
 
   public get name(): string {
-    return this._name;
+    return this.#name;
   }
 
   private set name(value: string) {
-    this._name = value;
+    this.#name = value;
   }
 
-  private _description: string;
+  #description: string;
 
   public get description(): string {
-    return this._description;
+    return this.#description;
   }
 
   private set description(value: string) {
-    this._description = value;
+    this.#description = value;
   }
 
+  public readonly organisationId: UUID;
+
+  public readonly id?: UUID;
+
   public constructor(
-    public readonly organisationId: UUID,
-    name: string,
-    description: string,
-    public readonly id?: UUID
+    organisationId: UUID,
+    {
+      name,
+      description
+    }: { readonly name: string; readonly description: string },
+    id?: UUID
   ) {
-    this._name = name;
-    this._description = description;
+    this.organisationId = organisationId;
+    this.#name = name;
+    this.#description = description;
+    if (typeof id !== "undefined") {
+      this.id = id;
+    }
   }
 
   public toJSON(): object {
     return {
-      ...(this.id && { id: this.id }),
-      name: this.name,
-      description: this.description
+      ...(typeof this.id !== "undefined" && { id: this.id }),
+      description: this.description,
+      name: this.name
     };
   }
 }

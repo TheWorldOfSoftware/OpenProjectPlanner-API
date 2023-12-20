@@ -13,17 +13,17 @@ import { TeamsModule } from "./organisations/team.module.js";
     TeamsModule,
     NestRouterModule.register([
       {
-        path: "organisations",
         module: OrganisationsModule,
+        path: "organisations",
 
         children: [
           {
-            path: ":organisationId/teams",
-            module: TeamsModule
+            module: TeamsModule,
+            path: ":organisationId/teams"
           },
           {
-            path: ":organisationId/boards",
             module: BoardsModule,
+            path: ":organisationId/boards",
 
             children: [
               {
