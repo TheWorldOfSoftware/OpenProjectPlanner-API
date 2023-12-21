@@ -7,13 +7,15 @@ import { escape } from "mysql2/promise";
 
 @Injectable()
 export class TeamRepository {
-  private readonly mySQL: MySQL;
+  private readonly mySQL: Readonly<MySQL>;
 
-  public constructor(@Inject("MySQL_OpenProjectPlanner") mySQL: MySQL) {
+  public constructor(
+    @Inject("MySQL_OpenProjectPlanner") mySQL: Readonly<MySQL>
+  ) {
     this.mySQL = mySQL;
   }
 
-  public async insertTeam(team: readonly Team): Promise<void> {
+  public async insertTeam(team: Readonly<Team>): Promise<void> {
     const query = `
       INSERT INTO Team (OrganisationId, Name, Description)
       VALUES (UUID_TO_BIN(${escape(team.organisationId)}), ${escape(
@@ -30,9 +32,14 @@ export class TeamRepository {
       WHERE Deleted IS FALSE
         AND BIN_TO_UUID(OrganisationId) = ${escape(organisationId)};
     `;
-    const [rows] = await this.mySQL.execute<TeamTable[]>(query);
+    const [rows] = await this.mySQL.execute<Readonly<TeamTable>[]>(query);
     return rows.map(
-      row => new Team(organisationId, row.Name, row.Description, row.Id)
+      row =>
+        new Team(
+          organisationId,
+          { name: row.Name, description: row.Description },
+          row.Id
+        )
     );
   }
 }

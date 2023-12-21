@@ -7,9 +7,13 @@ import { escape } from "mysql2/promise";
 
 @Injectable()
 export class OrganisationRepository {
+  private readonly mySQL: Readonly<MySQL>;
+
   public constructor(
-    @Inject("MySQL_OpenProjectPlanner") private readonly mySQL: MySQL
-  ) {}
+    @Inject("MySQL_OpenProjectPlanner") mySQL: Readonly<MySQL>
+  ) {
+    this.mySQL = mySQL;
+  }
 
   public async softDeleteOrganisation(organisationId: UUID): Promise<void> {
     const query = `
@@ -20,7 +24,9 @@ export class OrganisationRepository {
     await this.mySQL.execute(query);
   }
 
-  public async insertOrganisation(organisation: Organisation): Promise<void> {
+  public async insertOrganisation(
+    organisation: Readonly<Organisation>
+  ): Promise<void> {
     const query = `
       INSERT INTO Organisation (Name, Description)
       VALUES (${escape(organisation.name)}, ${escape(
@@ -40,7 +46,9 @@ export class OrganisationRepository {
     return rows.map(row => new Organisation(row.Name, row.Description, row.Id));
   }
 
-  public async updateOrganisation(organisation: Organisation): Promise<void> {
+  public async updateOrganisation(
+    organisation: Readonly<Organisation>
+  ): Promise<void> {
     const query = `
       UPDATE Organisation
       SET Name = ${escape(organisation.name)},

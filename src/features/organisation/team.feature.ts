@@ -5,9 +5,11 @@ import type { UUID } from "crypto";
 
 @Injectable()
 export class TeamFeature {
-  private readonly teamRepository: TeamRepository;
+  private readonly teamRepository: Readonly<TeamRepository>;
 
-  public constructor(@Inject(TeamRepository) teamRepository: TeamRepository) {
+  public constructor(
+    @Inject(TeamRepository) teamRepository: Readonly<TeamRepository>
+  ) {
     this.teamRepository = teamRepository;
   }
 
@@ -15,7 +17,7 @@ export class TeamFeature {
     return this.teamRepository.getTeams(organisationId);
   }
 
-  public async newTeam(team: Team): Promise<void> {
+  public async newTeam(team: Readonly<Team>): Promise<void> {
     await this.teamRepository.insertTeam(team);
   }
 }

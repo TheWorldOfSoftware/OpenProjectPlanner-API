@@ -14,9 +14,9 @@ import type { UUID } from "crypto";
 
 @Controller()
 export class TeamController {
-  private readonly teamFeature: TeamFeature;
+  private readonly teamFeature: Readonly<TeamFeature>;
 
-  public constructor(@Inject(TeamFeature) teamFeature: TeamFeature) {
+  public constructor(@Inject(TeamFeature) teamFeature: Readonly<TeamFeature>) {
     this.teamFeature = teamFeature;
   }
 
@@ -29,7 +29,7 @@ export class TeamController {
 
   @Post()
   public async createTeam(
-    @BodyParam("organisationId", new TeamPipe(true)) team: Team
+    @BodyParam("organisationId", new TeamPipe(true)) team: Readonly<Team>
   ): Promise<void> {
     await this.teamFeature.newTeam(team);
   }

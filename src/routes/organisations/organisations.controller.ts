@@ -17,10 +17,14 @@ import type { UUID } from "crypto";
 
 @Controller()
 export class OrganisationsController {
+  private readonly organisationFeature: Readonly<OrganisationFeature>;
+
   public constructor(
     @Inject(OrganisationFeature)
-    private readonly organisationFeature: OrganisationFeature
-  ) {}
+    organisationFeature: Readonly<OrganisationFeature>
+  ) {
+    this.organisationFeature = organisationFeature;
+  }
 
   @Delete(":id")
   public async deleteOrganisation(
@@ -36,14 +40,14 @@ export class OrganisationsController {
 
   @Post()
   public async postOrganisation(
-    @Body(new OrganisationPipe()) body: Organisation
+    @Body(new OrganisationPipe()) body: Readonly<Organisation>
   ): Promise<void> {
     await this.organisationFeature.newOrganisation(body);
   }
 
   @Put(":id")
   public async putOrganisation(
-    @BodyParam("id", new OrganisationPipe()) body: Organisation
+    @BodyParam("id", new OrganisationPipe()) body: Readonly<Organisation>
   ): Promise<void> {
     await this.organisationFeature.updateOrganisation(body);
   }

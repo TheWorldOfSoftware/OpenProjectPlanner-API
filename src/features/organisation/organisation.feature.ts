@@ -5,10 +5,14 @@ import type { UUID } from "crypto";
 
 @Injectable()
 export class OrganisationFeature {
+  private readonly organisationRepository: Readonly<OrganisationRepository>;
+
   public constructor(
     @Inject(OrganisationRepository)
-    private readonly organisationRepository: OrganisationRepository
-  ) {}
+    organisationRepository: Readonly<OrganisationRepository>
+  ) {
+    this.organisationRepository = organisationRepository;
+  }
 
   public async removeOrganisation(organisationId: UUID): Promise<void> {
     await this.organisationRepository.softDeleteOrganisation(organisationId);
@@ -18,11 +22,15 @@ export class OrganisationFeature {
     return this.organisationRepository.getOrganisations();
   }
 
-  public async newOrganisation(organisation: Organisation): Promise<void> {
+  public async newOrganisation(
+    organisation: Readonly<Organisation>
+  ): Promise<void> {
     await this.organisationRepository.insertOrganisation(organisation);
   }
 
-  public async updateOrganisation(organisation: Organisation): Promise<void> {
+  public async updateOrganisation(
+    organisation: Readonly<Organisation>
+  ): Promise<void> {
     await this.organisationRepository.updateOrganisation(organisation);
   }
 }

@@ -7,22 +7,26 @@ import {
 
 export const BodyParam: (
   param: string,
-  ...pipes: (PipeTransform | Type<PipeTransform>)[]
+  ...pipes: readonly (PipeTransform | Type<PipeTransform>)[]
 ) => ParameterDecorator = createParamDecorator<string>(
-  (data, ctx: ExecutionContext) => {
-    const req = ctx.switchToHttp().getRequest();
+  (identifier, ctx: Readonly<ExecutionContext>) => {
+    const req = ctx
+      .switchToHttp()
+      .getRequest<Request & { params: Record<string, unknown> }>();
     return {
       ...req.body,
-      [data]: req.params[data]
+      [identifier]: req.params[identifier] as string
     };
   }
 );
 
 export const BodyParams: (
-  ...pipes: (PipeTransform | Type<PipeTransform>)[]
+  ...pipes: readonly (PipeTransform | Type<PipeTransform>)[]
 ) => ParameterDecorator = createParamDecorator(
-  (_data, ctx: ExecutionContext) => {
-    const req = ctx.switchToHttp().getRequest();
+  (_data, ctx: Readonly<ExecutionContext>) => {
+    const req = ctx
+      .switchToHttp()
+      .getRequest<Request & { params: Record<string, unknown> }>();
     return {
       ...req.body,
       ...req.params
