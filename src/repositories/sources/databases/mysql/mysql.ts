@@ -7,12 +7,12 @@ import {
   type RowDataPacket,
   createPool
 } from "mysql2/promise";
-import type { IDatabase } from "../idatabase.js";
+import type IDatabase from "../idatabase.js";
 
 /**
  * Interact with a MySQL database
  */
-export class MySQL implements IDatabase {
+export default class MySQL implements IDatabase {
   /** Manage a pool of connections */
   private pool: Pool;
 
@@ -30,16 +30,18 @@ export class MySQL implements IDatabase {
    */
   public constructor(
     host: string,
-    { username, password }: { username: string; password: string },
-    defaultSchema?: string,
-    namedPlaceholders = false
+    { username, password }: Readonly<{ username: string; password: string }>,
+    {
+      defaultSchema,
+      namedPlaceholders = false
+    }: Readonly<Partial<{ defaultSchema: string; namedPlaceholders: boolean }>>
   ) {
     this.poolConfig = {
       host,
-      user: username,
-      password,
       namedPlaceholders,
-      ...(defaultSchema && { database: defaultSchema })
+      password,
+      user: username,
+      ...(typeof defaultSchema !== "undefined" && { database: defaultSchema })
     };
 
     this.pool = createPool(this.poolConfig);
@@ -60,7 +62,7 @@ export class MySQL implements IDatabase {
       | ResultSetHeader[]
       | RowDataPacket[]
       | RowDataPacket[][]
-  >(query: string, params?: any[] | undefined): Promise<[T, FieldPacket[]]> {
+  >(query: string, params?: readonly unknown[]): Promise<[T, FieldPacket[]]> {
     return this.pool.execute(query, params);
   }
 }

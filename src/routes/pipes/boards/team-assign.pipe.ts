@@ -13,7 +13,7 @@ const teamAssignBody = z.strictObject({
 });
 
 @Injectable()
-export class TeamAssignPipe implements PipeTransform {
+export default class TeamAssignPipe implements PipeTransform {
   public transform(value: unknown): { boardId: string; teamIds: string[] } {
     return teamAssignBody.parse(value);
   }

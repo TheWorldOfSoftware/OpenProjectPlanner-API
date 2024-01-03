@@ -5,4 +5,4 @@ import OpenProjectPlannerModule from "./open-project-planner/open-project-planne
   imports: [OpenProjectPlannerModule],
   exports: [OpenProjectPlannerModule]
 })
-export class SourcesModule {}
+export default class SourcesModule {}

@@ -1,7 +1,7 @@
 /**
  * Represents a physical database
  */
-export interface IDatabase {
+export default interface IDatabase {
   /**
    * Connect to the database.
    */
@@ -14,6 +14,7 @@ export interface IDatabase {
    * Execute a query on the database.
    * @param {string} query The query to execute on the database
    * @param {any[]} params Possible additional params
+   * @returns Possibly returns a value based on the query provided
    */
-  execute: (query: string, params?: any[]) => Promise<any>;
+  execute: (query: string, params?: readonly unknown[]) => Promise<unknown>;
 }

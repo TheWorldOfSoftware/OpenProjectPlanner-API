@@ -1,7 +1,7 @@
-import type { UUID } from "crypto";
 import type { RowDataPacket } from "mysql2/promise";
+import type { UUID } from "crypto";
 
-export interface OrganisationTable extends RowDataPacket {
+export default interface OrganisationTable extends RowDataPacket {
   Id: UUID;
   Name: string;
   Description: string;

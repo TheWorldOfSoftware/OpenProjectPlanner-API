@@ -1,6 +1,6 @@
-import { BoardRepository } from "./board.repository.js";
+import BoardRepository from "./board.repository.js";
 import { Module } from "@nestjs/common";
-import { SourcesModule } from "../sources/sources.module.js";
+import SourcesModule from "../sources/sources.module.js";
 
 @Module({
   imports: [SourcesModule],
@@ -8,4 +8,4 @@ import { SourcesModule } from "../sources/sources.module.js";
 
   exports: [BoardRepository]
 })
-export class BoardRepositoryModule {}
+export default class BoardRepositoryModule {}

@@ -1,9 +1,9 @@
-import { BoardTeamsModule } from "./boards/teams.module.js";
-import { BoardsModule } from "./boards/board.module.js";
+import BoardTeamsModule from "./boards/teams.module.js";
+import BoardsModule from "./boards/board.module.js";
 import { Module } from "@nestjs/common";
 import { RouterModule as NestRouterModule } from "@nestjs/core";
-import { OrganisationsModule } from "./organisations/organisations.module.js";
-import { TeamsModule } from "./organisations/team.module.js";
+import OrganisationsModule from "./organisations/organisations.module.js";
+import TeamsModule from "./organisations/team.module.js";
 
 @Module({
   imports: [
@@ -18,10 +18,6 @@ import { TeamsModule } from "./organisations/team.module.js";
 
         children: [
           {
-            module: TeamsModule,
-            path: ":organisationId/teams"
-          },
-          {
             module: BoardsModule,
             path: ":organisationId/boards",
 
@@ -31,10 +27,14 @@ import { TeamsModule } from "./organisations/team.module.js";
                 module: BoardTeamsModule
               }
             ]
+          },
+          {
+            module: TeamsModule,
+            path: ":organisationId/teams"
           }
         ]
       }
     ])
   ]
 })
-export class RouterModule {}
+export default class RouterModule {}

@@ -9,8 +9,7 @@ const mySQLOpenProjectPlanner: ValueProvider = {
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD
     },
-    "openprojectplanner",
-    true
+    { defaultSchema: "openprojectplanner", namedPlaceholders: true }
   )
 };
 

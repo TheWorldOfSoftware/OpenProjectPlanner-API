@@ -1,22 +1,19 @@
 import { Injectable, type PipeTransform } from "@nestjs/common";
-import { Organisation } from "../../../models/organisation/organisation.js";
+import Organisation from "../../../models/organisation/organisation.js";
 import type { UUID } from "crypto";
 import { validate as validateUUID } from "uuid";
 import { z } from "zod";
 
 const organisationBody = z.strictObject({
   description: z.string(),
-  id: z
-    .string()
-    .refine((id): id is UUID => validateUUID(id))
-    .optional(),
+  id: z.string().refine((id): id is UUID => validateUUID(id)),
   name: z.string()
 });
 
 const organisationBodyNew = organisationBody.omit({ id: true });
 
 @Injectable()
-export class OrganisationPipe implements PipeTransform {
+export default class OrganisationPipe implements PipeTransform {
   private readonly isNew: boolean;
 
   public constructor(isNew = false) {

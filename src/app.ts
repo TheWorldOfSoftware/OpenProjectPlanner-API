@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
-import { RouterModule } from "./routes/router.module.js";
+import RouterModule from "./routes/router.module.js";
 
 @Module({
   imports: [RouterModule]
 })
-export class AppModule {}
+export default class AppModule {}

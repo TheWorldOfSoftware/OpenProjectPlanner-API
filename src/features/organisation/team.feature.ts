@@ -1,10 +1,10 @@
 import { Inject, Injectable } from "@nestjs/common";
-import type { Team } from "../../models/organisation/team.js";
-import { TeamRepository } from "../../repositories/organisation/team.repository.js";
+import type Team from "../../models/organisation/team.js";
+import TeamRepository from "../../repositories/organisation/team.repository.js";
 import type { UUID } from "crypto";
 
 @Injectable()
-export class TeamFeature {
+export default class TeamFeature {
   private readonly teamRepository: Readonly<TeamRepository>;
 
   public constructor(

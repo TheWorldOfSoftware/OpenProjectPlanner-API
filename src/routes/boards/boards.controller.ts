@@ -8,17 +8,21 @@ import {
   Post,
   Put
 } from "@nestjs/common";
-import type { Board } from "../../models/boards/board.js";
-import { BoardFeature } from "../../features/boards/board.feature.js";
-import { BoardPipe } from "../pipes/boards/board.pipe.js";
+import type Board from "../../models/boards/board.js";
+import BoardFeature from "../../features/boards/board.feature.js";
+import BoardPipe from "../pipes/boards/board.pipe.js";
 import { BodyParams } from "../decorators/body-param.decorator.js";
 import type { UUID } from "crypto";
 
 @Controller()
-export class BoardsController {
+export default class BoardsController {
+  private readonly boardFeature: Readonly<BoardFeature>;
+
   public constructor(
-    @Inject(BoardFeature) private readonly boardFeature: BoardFeature
-  ) {}
+    @Inject(BoardFeature) boardFeature: Readonly<BoardFeature>
+  ) {
+    this.boardFeature = boardFeature;
+  }
 
   @Delete(":id")
   public async deleteBoard(
@@ -36,14 +40,14 @@ export class BoardsController {
 
   @Post()
   public async postBoard(
-    @BodyParams(new BoardPipe()) board: Board
+    @BodyParams(new BoardPipe()) board: Readonly<Board>
   ): Promise<void> {
     await this.boardFeature.newBoard(board);
   }
 
   @Put(":id")
   public async putBoard(
-    @BodyParams(new BoardPipe()) board: Board
+    @BodyParams(new BoardPipe()) board: Readonly<Board>
   ): Promise<void> {
     await this.boardFeature.updateBoard(board);
   }

@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import { TeamFeature } from "./team.feature.js";
-import { TeamRepositoryModule } from "../../repositories/organisation/team.module.js";
+import TeamFeature from "./team.feature.js";
+import TeamRepositoryModule from "../../repositories/organisation/team.module.js";
 
 @Module({
   imports: [TeamRepositoryModule],
@@ -8,4 +8,4 @@ import { TeamRepositoryModule } from "../../repositories/organisation/team.modul
 
   exports: [TeamFeature]
 })
-export class TeamFeatureModule {}
+export default class TeamFeatureModule {}

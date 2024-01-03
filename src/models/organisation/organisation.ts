@@ -1,6 +1,6 @@
 import type { UUID } from "crypto";
 
-export class Organisation {
+export default class Organisation {
   #name: string;
 
   public get name(): string {

@@ -1,5 +1,5 @@
 import { Injectable, type PipeTransform } from "@nestjs/common";
-import { Team } from "../../../models/organisation/team.js";
+import Team from "../../../models/organisation/team.js";
 import type { UUID } from "crypto";
 import { validate as validateUUID } from "uuid";
 import { z } from "zod";
@@ -14,7 +14,7 @@ const teamBody = z.strictObject({
 const teamBodyNew = teamBody.omit({ id: true });
 
 @Injectable()
-export class TeamPipe implements PipeTransform {
+export default class TeamPipe implements PipeTransform {
   private readonly isNew: boolean;
 
   public constructor(isNew = false) {
@@ -26,7 +26,6 @@ export class TeamPipe implements PipeTransform {
       const { organisationId, name, description } = teamBodyNew.parse(value);
       return new Team(organisationId, { name, description });
     }
-
     const { id, organisationId, name, description } = teamBody.parse(value);
     return new Team(organisationId, { name, description }, id);
   }

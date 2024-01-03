@@ -1,5 +1,5 @@
-import { BoardFeature } from "./board.feature.js";
-import { BoardRepositoryModule } from "../../repositories/boards/board.module.js";
+import BoardFeature from "./board.feature.js";
+import BoardRepositoryModule from "../../repositories/boards/board.module.js";
 import { Module } from "@nestjs/common";
 
 @Module({
@@ -8,4 +8,4 @@ import { Module } from "@nestjs/common";
 
   exports: [BoardFeature]
 })
-export class BoardFeatureModule {}
+export default class BoardFeatureModule {}

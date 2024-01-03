@@ -1,12 +1,12 @@
 import { Inject, Injectable } from "@nestjs/common";
-import type { MySQL } from "../sources/databases/mysql/mysql.js";
-import { Organisation } from "../../models/organisation/organisation.js";
-import type { OrganisationTable } from "../sources/open-project-planner/tables/organisation.js";
+import type MySQL from "../sources/databases/mysql/mysql.js";
+import Organisation from "../../models/organisation/organisation.js";
+import type OrganisationTable from "../sources/open-project-planner/tables/organisation.js";
 import type { UUID } from "crypto";
 import { escape } from "mysql2/promise";
 
 @Injectable()
-export class OrganisationRepository {
+export default class OrganisationRepository {
   private readonly mySQL: Readonly<MySQL>;
 
   public constructor(
