@@ -1,12 +1,9 @@
 {
-  "extends": "../../../../tsconfig.json",
+  "extends": "./node_modules/@worldofsoftware/configs/configs/typescript/tsconfig.json",
   "include": ["src/**/*"],
   "compilerOptions": {
     "noEmit": false,
     "outDir": "dist",
-    "experimentalDecorators": true,
-    "paths": {
-      "types/*": ["./src/types/*", "../../types/*"]
-    }
+    "experimentalDecorators": true
   }
 }

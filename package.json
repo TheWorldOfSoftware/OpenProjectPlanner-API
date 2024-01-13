@@ -28,7 +28,8 @@
     "start": "pnpm run build && node dist/main.js",
     "build": "tsc",
     "format": "prettier \"**/*.{js,ts,md,json,yaml}\" --write",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "precommit": "pnpm run format"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.0",
@@ -39,6 +40,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@worldofsoftware/configs": "workspace:^",
     "@types/uuid": "^9.0.7"
   }
 }
