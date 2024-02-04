@@ -4,6 +4,9 @@
 # Build Files
 dist
 
+# Test Files
+.tsimp
+
 # NPM
 node_modules
 

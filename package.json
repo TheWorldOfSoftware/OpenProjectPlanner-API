@@ -27,6 +27,7 @@
   "scripts": {
     "start": "pnpm run build && node dist/main.js",
     "build": "tsc",
+    "test": "ava",
     "format": "prettier \"**/*.{js,ts,md,json,yaml}\" --write",
     "lint": "eslint . --fix",
     "precommit": "pnpm run format"
@@ -40,8 +41,11 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@ava/typescript": "^4.1.0",
     "@types/uuid": "^9.0.7",
     "@worldofsoftware/configs": "workspace:^",
-    "prettier": "^3.2.5"
+    "ava": "^6.1.1",
+    "prettier": "^3.2.5",
+    "tsimp": "^2.0.10"
   }
 }
