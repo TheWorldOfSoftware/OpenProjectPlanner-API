@@ -33,19 +33,19 @@
     "precommit": "pnpm run format"
   },
   "dependencies": {
-    "@nestjs/common": "^10.3.0",
-    "@nestjs/core": "^10.3.0",
-    "@nestjs/platform-fastify": "^10.3.0",
-    "mysql2": "^3.7.0",
+    "@nestjs/common": "^10.3.2",
+    "@nestjs/core": "^10.3.2",
+    "@nestjs/platform-fastify": "^10.3.2",
+    "mysql2": "^3.9.2",
     "uuid": "^9.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
-    "@types/uuid": "^9.0.7",
+    "@types/uuid": "^9.0.8",
     "@worldofsoftware/configs": "workspace:^",
     "ava": "^6.1.1",
     "prettier": "^3.2.5",
-    "tsimp": "^2.0.10"
+    "tsimp": "^2.0.11"
   }
 }
