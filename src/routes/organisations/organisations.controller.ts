@@ -9,7 +9,7 @@ import {
   Post,
   Put
 } from "@nestjs/common";
-import { BodyParam } from "../decorators/body-param.decorator.js";
+import { BodyParam } from "../../decorators/body-param.decorator.js";
 import type Organisation from "../../models/organisation/organisation.js";
 import OrganisationFeature from "../../features/organisation/organisation.feature.js";
 import OrganisationPipe from "../pipes/organisations/organisation.pipe.js";
