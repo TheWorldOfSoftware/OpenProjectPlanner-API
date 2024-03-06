@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import BoardTeamRepository from "../../repositories/boards/team.repository.js";
+import BoardTeamRepository from "repositories/boards/team.repository.js";
 import type { UUID } from "crypto";
 
 @Injectable()

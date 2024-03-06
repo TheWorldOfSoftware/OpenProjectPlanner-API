@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
-import type Organisation from "../../models/organisation/organisation.js";
-import OrganisationRepository from "../../repositories/organisation/organisation.repository.js";
+import type Organisation from "models/organisation/organisation.js";
+import OrganisationRepository from "repositories/organisation/organisation.repository.js";
 import type { UUID } from "crypto";
 
 @Injectable()

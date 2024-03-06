@@ -1,5 +1,5 @@
 import BoardTeamFeature from "./team.feature.js";
-import BoardTeamRepositoryModule from "../../repositories/boards/team.module.js";
+import BoardTeamRepositoryModule from "repositories/boards/team.module.js";
 import { Module } from "@nestjs/common";
 
 @Module({

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import Board from "../../models/boards/board.js";
+import Board from "models/boards/board.js";
 import type BoardTable from "../sources/open-project-planner/tables/board.js";
 import type MySQL from "../sources/databases/mysql/mysql.js";
 import type { UUID } from "crypto";

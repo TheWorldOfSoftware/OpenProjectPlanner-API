@@ -1,5 +1,5 @@
 import { Injectable, type PipeTransform } from "@nestjs/common";
-import Organisation from "../../../models/organisation/organisation.js";
+import Organisation from "models/organisation/organisation.js";
 import type { UUID } from "crypto";
 import { validate as validateUUID } from "uuid";
 import { z } from "zod";

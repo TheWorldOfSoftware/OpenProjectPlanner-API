@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
-import type Board from "../../models/boards/board.js";
-import BoardRepository from "../../repositories/boards/board.repository.js";
+import type Board from "models/boards/board.js";
+import BoardRepository from "repositories/boards/board.repository.js";
 import type { UUID } from "crypto";
 
 @Injectable()
