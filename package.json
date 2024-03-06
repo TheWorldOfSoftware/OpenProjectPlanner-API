@@ -46,7 +46,7 @@
     "@ava/typescript": "^4.1.0",
     "@types/uuid": "^9.0.8",
     "@worldofsoftware/configs": "workspace:^",
-    "ava": "^6.1.1",
+    "ava": "^6.1.2",
     "prettier": "^3.2.5",
     "tsimp": "^2.0.11"
   }
