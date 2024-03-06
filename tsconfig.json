@@ -1,5 +1,6 @@
 {
   "extends": "./node_modules/@worldofsoftware/configs/configs/typescript/tsconfig.json",
+  "files": ["global.d.ts"],
   "include": ["src/**/*"],
   "compilerOptions": {
     "noEmit": false,
