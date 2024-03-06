@@ -1,4 +1,4 @@
-import type { NodeEnvOverride } from "./src/modules/process-env/index.ts";
+import type { NodeEnvOverride } from "./src/env.ts";
 
 declare global {
   namespace NodeJS {
