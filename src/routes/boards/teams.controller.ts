@@ -1,5 +1,5 @@
 import { Controller, Inject, Put } from "@nestjs/common";
-import BoardTeamFeature from "features/boards/team.feature.js";
+import BoardTeamFeature from "features/board/team.feature.js";
 import { BodyParam } from "routes/body-param.decorator.js";
 import type TeamAssign from "types/boards/team-assign.js";
 import TeamAssignPipe from "./teams-assign.pipe.js";
