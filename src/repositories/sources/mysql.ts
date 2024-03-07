@@ -7,7 +7,7 @@ import {
   type RowDataPacket,
   createPool
 } from "mysql2/promise";
-import type IDatabase from "../idatabase.js";
+import type IDatabase from "./idatabase.js";
 
 /**
  * Interact with a MySQL database

@@ -5,7 +5,6 @@ import { Module } from "@nestjs/common";
 @Module({
   imports: [BoardRepositoryModule],
   providers: [BoardFeature],
-
   exports: [BoardFeature]
 })
 export default class BoardFeatureModule {}

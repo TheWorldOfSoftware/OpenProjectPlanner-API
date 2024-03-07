@@ -1,7 +1,8 @@
 import { Module, type ValueProvider } from "@nestjs/common";
-import MySQL from "../databases/mysql/mysql.js";
+import type IDatabase from "../idatabase.js";
+import MySQL from "../mysql.js";
 
-const mySQLOpenProjectPlanner: ValueProvider = {
+const mySQLOpenProjectPlanner: ValueProvider<IDatabase> = {
   provide: "MySQL_OpenProjectPlanner",
   useValue: new MySQL(
     process.env.MYSQL_CONNECTION,
@@ -17,4 +18,4 @@ const mySQLOpenProjectPlanner: ValueProvider = {
   providers: [mySQLOpenProjectPlanner],
   exports: [mySQLOpenProjectPlanner]
 })
-export default class OpenProjectPlannerModule {}
+export default class OpenProjectModule {}

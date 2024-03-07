@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
-import OpenProjectPlannerModule from "./open-project-planner/open-project-planner.module.js";
+import OpenProjectModule from "./open-project/open-project.module.js";
 
 @Module({
-  imports: [OpenProjectPlannerModule],
-  exports: [OpenProjectPlannerModule]
+  imports: [OpenProjectModule],
+  exports: [OpenProjectModule]
 })
 export default class SourcesModule {}
