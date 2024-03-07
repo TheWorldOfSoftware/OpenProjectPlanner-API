@@ -6,7 +6,7 @@ import {
   ParseUUIDPipe,
   Post
 } from "@nestjs/common";
-import { BodyParam } from "decorators/body-param.decorator.js";
+import { BodyParam } from "routes/body-param.decorator.js";
 import type Team from "models/organisation/team.js";
 import TeamFeature from "features/organisation/team.feature.js";
 import TeamPipe from "../pipes/organisations/team.pipe.js";
