@@ -7,7 +7,6 @@
     "outDir": "dist",
     "experimentalDecorators": true,
     "paths": {
-      "decorators/*": ["./src/decorators/*"],
       "features/*": ["./src/features/*"],
       "models/*": ["./src/models/*"],
       "repositories/*": ["./src/repositories/*"],
