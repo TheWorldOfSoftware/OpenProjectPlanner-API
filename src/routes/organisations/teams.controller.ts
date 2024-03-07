@@ -9,7 +9,7 @@ import {
 import { BodyParam } from "routes/body-param.decorator.js";
 import type Team from "models/organisation/team.js";
 import TeamFeature from "features/organisation/team.feature.js";
-import TeamPipe from "../pipes/organisations/team.pipe.js";
+import TeamPipe from "./teams.pipe.js";
 import type { UUID } from "crypto";
 
 @Controller()

@@ -10,7 +10,7 @@ import {
 } from "@nestjs/common";
 import type Board from "models/boards/board.js";
 import BoardFeature from "features/boards/board.feature.js";
-import BoardPipe from "../pipes/boards/board.pipe.js";
+import BoardPipe from "./boards.pipe.js";
 import { BodyParams } from "routes/body-param.decorator.js";
 import type { UUID } from "crypto";
 

@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import TeamController from "./team.controller.js";
+import TeamController from "./teams.controller.js";
 import TeamFeatureModule from "features/organisation/team.module.js";
 
 @Module({

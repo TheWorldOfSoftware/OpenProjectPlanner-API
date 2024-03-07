@@ -1,9 +1,9 @@
 import BoardTeamsModule from "./boards/teams.module.js";
-import BoardsModule from "./boards/board.module.js";
+import BoardsModule from "./boards/boards.module.js";
 import { Module } from "@nestjs/common";
 import { RouterModule as NestRouterModule } from "@nestjs/core";
 import OrganisationsModule from "./organisations/organisations.module.js";
-import TeamsModule from "./organisations/team.module.js";
+import TeamsModule from "./organisations/teams.module.js";
 
 @Module({
   imports: [
