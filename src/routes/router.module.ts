@@ -18,19 +18,19 @@ import TeamsModule from "./organisations/teams.module.js";
 
         children: [
           {
-            module: BoardsModule,
-            path: ":organisationId/boards",
-
-            children: [
-              {
-                path: ":boardId/teams",
-                module: BoardTeamsModule
-              }
-            ]
-          },
-          {
             module: TeamsModule,
             path: ":organisationId/teams"
+          }
+        ]
+      },
+      {
+        module: BoardsModule,
+        path: "boards",
+
+        children: [
+          {
+            path: ":boardId/teams",
+            module: BoardTeamsModule
           }
         ]
       }

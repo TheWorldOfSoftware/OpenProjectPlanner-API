@@ -2,6 +2,7 @@ import {
   Controller,
   Delete,
   Get,
+  Headers,
   Inject,
   Param,
   ParseUUIDPipe,
@@ -33,7 +34,7 @@ export default class BoardsController {
 
   @Get()
   public async getBoards(
-    @Param("organisationId", new ParseUUIDPipe()) organisationId: UUID
+    @Headers("Organisation") organisationId: UUID
   ): Promise<Board[]> {
     return this.boardFeature.getBoards(organisationId);
   }
